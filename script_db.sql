@@ -1,6 +1,6 @@
-CREATE DATABASE SistemaFerroviario;
+CREATE DATABASE SistemaFerroviarioDB;
 
-USE SistemaFerroviario;
+USE SistemaFerroviarioDB;
 
 CREATE TABLE trem(
 	num_trem INT NOT NULL AUTO_INCREMENT,
