@@ -4,29 +4,31 @@ USE SistemaFerroviario;
 
 CREATE TABLE trem(
 	num_trem INT NOT NULL AUTO_INCREMENT,
-    qtd_vagoes TINYINT,
-    PRIMARY KEY(num_trem)
+    qtd_vagoes TINYINT(100),
+    PRIMARY KEY (num_trem)
 );
 
 CREATE TABLE trem_classe(
 	num_trem INT NOT NULL AUTO_INCREMENT,
     classe VARCHAR(45),
-    capacidade_maxima TINYINT,
+    capacidade_maxima TINYINT NOT NULL,
     PRIMARY KEY(num_trem),
-    CONSTRAINT FK_trem_classe_trem FOREIGN KEY(num_trem) REFERENCES trem(num_trem)
+    CONSTRAINT FK_trem_classe_trem FOREIGN KEY (num_trem) REFERENCES trem(num_trem)
 );
 
 CREATE TABLE estacao(
 	estacao_id INT NOT NULL AUTO_INCREMENT,
-    estacao_nome VARCHAR(45),
-    PRIMARY KEY(estacao_id)
+    estacao_nome VARCHAR(45) NOT NULL,
+    num_trem INT NOT NULL,
+    PRIMARY KEY (estacao_id),
+    CONSTRAINT FK_estacao_trem FOREIGN KEY (num_trem) REFERENCES trem (num_trem)
 );
 
 CREATE TABLE passageiro(
 	passageiro_id INT NOT NULL AUTO_INCREMENT,
-    passageiro_nome VARCHAR(45),
-    passageiro_sobrenome VARCHAR(45),
-    idade TINYINT,
+    passageiro_nome VARCHAR(45) NOT NULL,
+    passageiro_sobrenome VARCHAR(45) NOT NULL,
+    idade TINYINT(3),
     PRIMARY KEY(passageiro_id)
 );
 
@@ -34,10 +36,10 @@ CREATE TABLE ticket_vendido(
 	ticket_id INT NOT NULL AUTO_INCREMENT,
     preco DECIMAL(10,2),
     num_trem INT NOT NULL,
-    data_viagem date,
+    data_viagem DATE NOT NULL,
     nome_origem VARCHAR(45),
     nome_destino VARCHAR(45),
-    passageiro_id INT,
+    passageiro_id INT NOT NULL,
     PRIMARY KEY(ticket_id),
     CONSTRAINT FK_ticket_vendido_trem FOREIGN KEY(num_trem) REFERENCES trem(num_trem),
     CONSTRAINT FK_ticket_vendido_passageiro FOREIGN KEY(passageiro_id) REFERENCES passageiro(passageiro_id)
@@ -65,19 +67,6 @@ VALUES
 ('Carina',  'Duarte', 22),
 ('Vitor', 'Santos', 31);
 
-INSERT INTO estacao (estacao_nome)
-VALUES
-('Vicentina'),
-('Moacir Franco'),
-('Franca'),
-('Antoniela da II'),
-('Dom Pedro I'),
-('Jucelino Kubicheck'),
-('São José da IX'),
-('Beira Rio'),
-('Padre Pelágio'),
-('José Hermano');
-
 INSERT INTO trem (qtd_vagoes)
 VALUES
 (10),
@@ -96,6 +85,19 @@ VALUES
 ('1ª Classe', 10),
 ('2ª Classe', 50),
 ('3ª Classe', 100);
+
+INSERT INTO estacao (estacao_nome, num_trem)
+VALUES
+('Vicentina', 2),
+('Moacir Franco', 5),
+('Franca', 8),
+('Antoniela da II', 7),
+('Dom Pedro I', 1),
+('Jucelino Kubicheck', 3),
+('São José da IX', 9),
+('Beira Rio', 8),
+('Padre Pelágio', 4),
+('José Hermano', 5);
 
 INSERT INTO ticket_vendido (preco, num_trem, data_viagem, nome_origem, nome_destino, passageiro_id)
 VALUES 
@@ -131,6 +133,3 @@ VALUES
 (16, 6),
 (14, 9),
 (12, 1);
-
-
-
