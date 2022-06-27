@@ -3,13 +3,13 @@ CREATE DATABASE SistemaFerroviarioDB;
 USE SistemaFerroviarioDB;
 
 CREATE TABLE trem(
-	num_trem INT NOT NULL AUTO_INCREMENT,
+    num_trem INT NOT NULL AUTO_INCREMENT,
     qtd_vagoes TINYINT(100),
     PRIMARY KEY (num_trem)
 );
 
 CREATE TABLE trem_classe(
-	num_trem INT NOT NULL AUTO_INCREMENT,
+    num_trem INT NOT NULL AUTO_INCREMENT,
     classe VARCHAR(45),
     capacidade_maxima TINYINT NOT NULL,
     PRIMARY KEY(num_trem),
@@ -17,7 +17,7 @@ CREATE TABLE trem_classe(
 );
 
 CREATE TABLE estacao(
-	estacao_id INT NOT NULL AUTO_INCREMENT,
+    estacao_id INT NOT NULL AUTO_INCREMENT,
     estacao_nome VARCHAR(45) NOT NULL,
     num_trem INT NOT NULL,
     PRIMARY KEY (estacao_id),
@@ -25,7 +25,7 @@ CREATE TABLE estacao(
 );
 
 CREATE TABLE passageiro(
-	passageiro_id INT NOT NULL AUTO_INCREMENT,
+    passageiro_id INT NOT NULL AUTO_INCREMENT,
     passageiro_nome VARCHAR(45) NOT NULL,
     passageiro_sobrenome VARCHAR(45) NOT NULL,
     idade TINYINT(3),
@@ -33,7 +33,7 @@ CREATE TABLE passageiro(
 );
 
 CREATE TABLE ticket_vendido(
-	ticket_id INT NOT NULL AUTO_INCREMENT,
+    ticket_id INT NOT NULL AUTO_INCREMENT,
     preco DECIMAL(10,2),
     num_trem INT NOT NULL,
     data_viagem DATE NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE ticket_vendido(
 );
 
 CREATE TABLE ticket_cancelado(
-	cancelamento_id INT NOT NULL AUTO_INCREMENT,
+    cancelamento_id INT NOT NULL AUTO_INCREMENT,
     ticket_id INT NOT NULL,
     passageiro_id INT NOT NULL,
     PRIMARY KEY(cancelamento_id),
