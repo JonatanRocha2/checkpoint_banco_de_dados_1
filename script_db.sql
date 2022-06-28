@@ -4,7 +4,7 @@ USE SistemaFerroviarioDB;
 
 CREATE TABLE trem(
     num_trem INT NOT NULL AUTO_INCREMENT,
-    qtd_vagoes TINYINT(100),
+    qtd_vagoes TINYINT,
     PRIMARY KEY (num_trem)
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE passageiro(
     passageiro_id INT NOT NULL AUTO_INCREMENT,
     passageiro_nome VARCHAR(45) NOT NULL,
     passageiro_sobrenome VARCHAR(45) NOT NULL,
-    idade TINYINT(3),
+    idade TINYINT,
     PRIMARY KEY(passageiro_id)
 );
 
