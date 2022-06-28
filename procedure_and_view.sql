@@ -2,13 +2,13 @@ DELIMITER $$
 CREATE PROCEDURE sp_qtdTicketsPassageiro (
     IN p_idPassageiro INT
 )
-    SELECT COUNT(ticket_id) as `Quantidade de Passagem por Passageiro` 
+    SELECT passageiro.passageiro_nome, COUNT(ticket_id) as `Quantidade de Passagem por Passageiro` 
     FROM ticket_vendido INNER JOIN passageiro ON ticket_vendido.passageiro_id = passageiro.passageiro_id 
-    WHERE passageiro.passageiro_id = p_idPassageiro; 
+    WHERE passageiro.passageiro_id = p_idPassageiro GROUP BY passageiro.passageiro_nome; 
 
 DELIMITER ;
 
-CALL sp_qtdTicketsPassageiro(9);
+CALL sp_qtdTicketsPassageiro(5);
 
 
 
