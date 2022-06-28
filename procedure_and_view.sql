@@ -11,7 +11,7 @@ DELIMITER ;
 CALL sp_qtdTicketsPassageiro(5);
 
 
-
+/* view retorna passageiros com idade igual ou maior que 18 anos */
 CREATE VIEW dadosCliente 
 AS
 SELECT passageiro_nome, passageiro_sobrenome FROM passageiro WHERE idade >= 18;
