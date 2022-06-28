@@ -1,0 +1,1 @@
+ALTER TABLE ticket_cancelado ADD motivo_cancelamento VARCHAR(255);
